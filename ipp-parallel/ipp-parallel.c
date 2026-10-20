@@ -76,9 +76,6 @@ int main(int argc, char *argv[]) {
         }
 
         // Map (M1): coth(sqrt(x))
-         * x = M1[j] ∈ [1, A]  ⇒  sqrt(x) ≥ 1  ⇒  exp(x) - exp(-x) > 0,
-         * значит знаменатель den не обращается в ноль.
-         */
         ippsSqrt_64f(M1, M1, N);              // sqrt(x)
         ippsExp_64f(M1, exp_pos, N);          // exp(x)
         ippsMulC_64f(M1, -1.0, tmp, N);       // -x (нет ippsNeg_64f)
