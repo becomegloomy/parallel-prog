@@ -71,12 +71,10 @@ python3 plot_results.py
 > **Примечание:** данные с конкретной машины (4 ядра, Linux).
 > Для воспроизведения запустите `./run_all.sh` локально.
 
-## Стек
-C, POSIX, GCC auto-parallelization (`-ftree-parallelize-loops`),
-`rand_r`, `gettimeofday`, comb sort, Python (pandas, matplotlib), Bash.
-
-## Технические детали
-- Автоматическое распараллеливание GCC (Graphite)
-- Замер времени (`gettimeofday`), параллельное ускорение
-- Comb Sort (собственная реализация)
-- Анализ результатов (pandas, matplotlib)
+## Стек и ключевые концепции
+- **C** — `rand_r`, `gettimeofday`, `malloc`/`free`, `math.h`
+- **GCC auto-parallelization** — `-floop-parallelize-all`,
+  `-ftree-parallelize-loops=K` (K = 1, 2, 4, 8)
+- **Comb Sort** — собственная реализация (без `qsort`)
+- **Python** — pandas, matplotlib (анализ результатов)
+- **Bash** — `run_all.sh` (автоматизация экспериментов)
