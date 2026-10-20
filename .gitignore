@@ -5,6 +5,11 @@
 lab1-seq
 lab1-par-*
 
+sample_results.csv
+time_execution.png
+speedup.png
+speedup.csv
+
 # Python
 __pycache__/
 *.pyc
