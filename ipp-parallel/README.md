@@ -34,9 +34,9 @@
 ## Требования
 
 - GCC ≥ 9 с поддержкой OpenMP
-- Intel oneAPI Base Toolkit (содержит Intel IPP) — <https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html>
-- Python 3 с пакетами `pandas`, `matplotlib`, `numpy` — для построения графиков
-- `sysstat` (утилита `mpstat`) — для замера загрузки процессора
+- Intel oneAPI Base Toolkit (содержит Intel IPP) - <https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html>
+- Python 3 с пакетами `pandas`, `matplotlib`, `numpy` - для построения графиков
+- `sysstat` (утилита `mpstat`) - для замера загрузки процессора
 
 ## Запуск
 
