@@ -11,6 +11,10 @@ lab1-par-*
 ipp-parallel
 omp-parallel
 
+# openmp-stages-benchmark
+omp-parallel-stages
+
+
 # Результаты бенчмарков
 # auto-parallel
 sample_results.csv
@@ -22,14 +26,23 @@ speedup.csv
 results/
 !results/.gitkeep
 
+# openmp-stages-benchmark
+results.csv
+cpu_usage.csv
+time_execution.png
+cpu_usage.png
+
+
 # Python
 __pycache__/
 *.pyc
 venv/
 .env
 
+
 # Временные
 *.tmp
+
 
 # Системные
 .DS_Store
