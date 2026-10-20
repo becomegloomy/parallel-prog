@@ -1,0 +1,21 @@
+# C
+*.o
+*.out
+*.exe
+lab1-seq
+lab1-par-*
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Результаты
+speedup.csv
+
+# Временные
+*.tmp
+
+# Системные
+.DS_Store
