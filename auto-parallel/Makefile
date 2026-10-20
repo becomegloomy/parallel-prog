@@ -1,5 +1,6 @@
 CC       = gcc
 CFLAGS   = -O3 -Wall -Werror -lm
+LDLIBS   = -lm
 SRC      = auto-parallel.c
 K_VALUES = 1 2 4 8
 
@@ -10,12 +11,12 @@ all: seq par
 seq: lab1-seq
 
 lab1-seq: $(SRC)
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $< $(LDLIBS)
 
 par: $(K_VALUES:%=lab1-par-%)
 
 lab1-par-%: $(SRC)
-	$(CC) $(CFLAGS) -floop-parallelize-all -ftree-parallelize-loops=$* -o $@ $<
+	$(CC) $(CFLAGS) -floop-parallelize-all -ftree-parallelize-loops=$* -o $@ $< $(LDLIBS)
 
 test: all
 	./run_all.sh > sample_results.csv
