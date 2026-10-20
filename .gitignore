@@ -1,23 +1,32 @@
-# C
+# C / бинарники
 *.o
 *.out
 *.exe
+
+# auto-parallel
 lab1-seq
 lab1-par-*
 
+# ipp-omp-benchmark
+ipp-parallel
+omp-parallel
+
+# Результаты бенчмарков
+# auto-parallel
 sample_results.csv
 time_execution.png
 speedup.png
 speedup.csv
+
+# ipp-omp-benchmark
+results/
+!results/.gitkeep
 
 # Python
 __pycache__/
 *.pyc
 venv/
 .env
-
-# Результаты
-speedup.csv
 
 # Временные
 *.tmp
