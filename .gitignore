@@ -7,7 +7,7 @@
 lab1-seq
 lab1-par-*
 
-# ipp-omp-benchmark
+# ipp-parallel
 ipp-parallel
 omp-parallel
 
@@ -18,7 +18,7 @@ time_execution.png
 speedup.png
 speedup.csv
 
-# ipp-omp-benchmark
+# ipp-parallel
 results/
 !results/.gitkeep
 
