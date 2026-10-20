@@ -7,9 +7,7 @@
 
 Плюс профилирование загрузки CPU через `mpstat` при разном числе потоков OpenMP. Цель — измерить реальное ускорение от OpenMP относительно IPP-baseline, оценить Amdahl-ограничение и увидеть, как насыщаются ядра при `M > K`.
 
----
-
-### Задача
+## Задача
 
 5 независимых экспериментов (`ITERATIONS = 5`). В каждом над массивами `M1` (размер `N`) и `M2` (размер `N/2`) выполняются этапы:
 
@@ -24,8 +22,6 @@
 
 Итог: `X_final = Σ X_iter` по 5 экспериментам.
 
----
-
 ## Что параллелится в `omp-parallel`
 
 | Этап | Реализация | Почему |
@@ -38,15 +34,11 @@
 | Reduce | `#pragma omp parallel for reduction(+:X)` | стандартный `reduction` |
 | `min_nonzero` | последовательно | первый ненулевой; на `N/2 = 260k` быстрее последовательно |
 
----
-
 ## Требования
 
 - GCC ≥ 9 с OpenMP
 - Intel oneAPI Base Toolkit (IPP) — <https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html>
 - Python 3 (`pandas`, `matplotlib`, `numpy`), `sysstat` (`mpstat`) — для профилирования
-
----
 
 ## Запуск
 
@@ -59,8 +51,6 @@ make plots      # → time_execution.png, speedup.png, efficiency.png, cpu_usage
 
 - `make bench`: `N` от 300 до 522000 (11 точек), `M` от 1 до 8.
 - `make overhead`: `M ∈ {4, 8, 12, 16, 20}`, `mpstat -P ALL 1 20` в фоне + `omp-parallel` при `N = 463500`.
-
----
 
 ## Ожидаемые результаты
 
@@ -75,8 +65,6 @@ make plots      # → time_execution.png, speedup.png, efficiency.png, cpu_usage
 
 Speedup насыщается при `M > числа ядер` — Amdahl (Sort последовательный). Цифры зависят от железа; форма кривой сохранится.
 
----
-
 ## Ограничения
 
 1. **Sort последовательный** → Amdahl: при больших `N` Sort доминирует, speedup насыщается.
@@ -84,8 +72,6 @@ Speedup насыщается при `M > числа ядер` — Amdahl (Sort �
 3. **`ipp-parallel` — baseline.** `OMP_NUM_THREADS` на него не влияет; реальное ускорение — в `omp-parallel`.
 4. **`M > K` — переподписка**: все ядра ≈ 100 %, но ускорения нет.
 5. **`N2` разный**: `run_all.sh` — 522000, `run_overhead.sh` — 463500.
-
----
 
 ## Структура
 
