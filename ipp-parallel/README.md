@@ -29,8 +29,13 @@
 make            # сборка двух версий ipp-parallel (последовательная) и omp-parallel (параллельная)
 make bench      # замер времени → results/results.csv
 make overhead   # замер загрузки CPU → results/cpu_M{4,8,12,16,20}.csv
-make plots      # построение графиков зависимостей → time_execution.png (время от `N`), speedup.png (ускорение `S(M) = T(1)/T(M)` от `N`), efficiency.png (эффективность `E(M) = S(M)/M` от `M`), cpu_usage.png (загрузка CPU от `M`)
+make plots      # построение графиков зависимостей → time_execution.png, speedup.png, efficiency.png, cpu_usage.png
 ```
+
+- `time_execution.png` - время `T(M)` от числа потоков `M` для `N = 522000`;
+- `speedup.png` - ускорение `S(M) = T(1)/T(M)` от `M`;
+- `efficiency.png` - эффективность `E(M) = S(M)/M` от `M`;
+- `cpu_usage.png` - загрузка CPU во времени для `M = 4, 8, 12, 16, 20`.
 
 ## Что ожидать на графиках
 
