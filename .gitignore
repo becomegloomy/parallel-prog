@@ -20,6 +20,9 @@ omp-tasks-bench
 # pthreads-benchmark
 pthreads-bench
 
+# opencl-benchmark
+opencl-bench
+
 
 # Результаты бенчмарков
 # auto-parallel
@@ -46,6 +49,11 @@ speedup_ci.png
 results.csv
 speedup.png
 stages_fraction.png
+
+# opencl-benchmark
+results.csv
+upload_vs_kernel.png
+throughput.png
 
 
 # Python
