@@ -37,6 +37,9 @@ make test                 # прогон всех N и K и фиксация в�
 python3 plot_results.py   # графики зависимости → time_execution.png (время от `N`), speedup.png (ускорение `S(M) = T(1)/T(M)` от `N`)
 ```
 
+- `time_execution.png` - время выполнения от `N` для `seq` и `par-{1,2,4,8}`;
+- `speedup.png` - ускорение `S_K(N) = T_seq(N) / T_par_K(N)` от `N` для `par-{1,2,4,8}`.
+
 ### Ручная сборка
 
 ```bash
