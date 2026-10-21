@@ -14,6 +14,9 @@ omp-parallel
 # openmp-stages-benchmark
 omp-parallel-stages
 
+# openmp-tasks-benchmark
+omp-tasks-bench
+
 
 # Результаты бенчмарков
 # auto-parallel
@@ -31,6 +34,10 @@ results.csv
 cpu_usage.csv
 time_execution.png
 cpu_usage.png
+
+# openmp-tasks-benchmark
+results_2.csv
+speedup_ci.png
 
 
 # Python
