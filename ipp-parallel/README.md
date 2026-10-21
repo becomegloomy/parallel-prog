@@ -1,6 +1,6 @@
 # Ipp-omp-benchmark
 
-Сравнение двух реализаций одной задачи обработки массивов: последовательной (Intel IPP) и параллельной (OpenMP). Плюс замер загрузки процессора при разном числе потоков.
+Сравнение двух реализаций одной задачи обработки массивов: последовательной c Intel IPP и параллельной c OpenMP. Плюс замер загрузки процессора при разном числе потоков.
 
 Цель - измерить ускорение от OpenMP относительно последовательной версии, оценить предел и увидеть, что происходит, когда потоков больше, чем ядер.
 
@@ -10,41 +10,26 @@
 - **`omp-parallel`** - параллельная версия на OpenMP;
 - **`mpstat`** - системная утилита, которая показывает загрузку каждого ядра.
 
-## Задача
+### Распараллеливание
 
-Программа делает **5 независимых экспериментов**. В каждом эксперименте над двумя массивами - `M1` (размер `N`) и `M2` (размер `N/2`) - выполняются этапы:
-
-| Этап | Что происходит |
-|---|---|
-| **Generate** | Заполнение массивов случайными числами |
-| **Map (M1)** | Каждый элемент `M1` = `coth(sqrt(x))` |
-| **Map (M2)** | Каждый элемент `M2` = `sqrt((M2_copy[j] + M2_copy[j-1]) * e)` |
-| **Merge** | Поэлементное деление: `M2[j] = M1[j] / M2[j]` |
-| **Sort** | Сортировка расчёской |
-| **Reduce** | Сумма синусов тех элементов `M2`, у которых частное `M2[j] / min_nonzero` - чётное, `min_nonzero`- первый ненулевой элемент после сортировки |
-
-Итоговое значение `X` суммируется по всем 5 экспериментам.
-
-### В `omp-parallel`
-
-**Параллельно:** Map (M1), Map (M2), Merge, Reduce - независимые итерации, `#pragma omp parallel for`.
-
-**Последовательно:** Generate (общий `seed` у `rand_r`), Sort (Comb Sort - обмены зависят друг от друга), поиск `min_nonzero` (первый ненулевой - проход по массиву).
+- **параллельно:** Map (M1), Map (M2), Merge, Reduce - независимые итерации, `#pragma omp parallel for`;
+- **последовательно:** Generate (общий `seed` у `rand_r`), Sort (Comb Sort - обмены зависят друг от друга), поиск `min_nonzero` (первый ненулевой - проход по массиву).
 
 ## Требования
 
-- GCC ≥ 9 с поддержкой OpenMP
-- Intel oneAPI Base Toolkit (содержит Intel IPP) - <https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html>
-- Python 3 с пакетами `pandas`, `matplotlib`, `numpy` - для построения графиков
-- `sysstat` (утилита `mpstat`) - для замера загрузки процессора
+- GCC ≥ 9 с поддержкой OpenMP;
+- Intel oneAPI Base Toolkit (содержит Intel IPP) - <https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html>;
+- Python 3 с пакетами `pandas`, `matplotlib`, `numpy`;
+- `sysstat` (утилита `mpstat`) - для замера загрузки процессора;
+- Bash.
 
 ## Запуск
 
 ```bash
-make            # сборка ipp-parallel и omp-parallel
+make            # сборка двух версий ipp-parallel (последовательная) и omp-parallel (параллельная)
 make bench      # замер времени → results/results.csv
 make overhead   # замер загрузки CPU → results/cpu_M{4,8,12,16,20}.csv
-make plots      # построение графиков → time_execution.png, speedup.png, efficiency.png, cpu_usage.png
+make plots      # построение графиков зависимостей → time_execution.png (время от `N`), speedup.png (ускорение `S(M) = T(1)/T(M)` от `N`), efficiency.png (эффективность `E(M) = S(M)/M` от `M`), cpu_usage.png (загрузка CPU от `M`)
 ```
 
 ## Что ожидать на графиках
@@ -79,9 +64,3 @@ ipp-omp-benchmark/
     ├── plot_results.py    # графики времени, ускорения, эффективности
     └── plot_results2.py   # график загрузки CPU
 ```
-
-Папка `results/` создаётся автоматически при запуске и в git не коммитится — её содержимое воспроизводится командами выше.
-
-### Лицензия
-
-Код свободен для использования и модификации. Intel IPP распространяется по лицензии Intel (см. установщик oneAPI).
