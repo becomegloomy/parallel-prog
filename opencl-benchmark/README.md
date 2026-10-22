@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 ```bash
 make            # сборка opencl-bench
-make bench      # замер времени по 10 раз для каждого `N` → results.csv
+make bench      # замер времени по 10 раз для каждого `N` (размер массива) → results.csv
 make plots      # графики → upload_vs_kernel.png, throughput.png
 ```
 
