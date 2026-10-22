@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 ```bash
 make            # сборка omp-parallel-stages
-make bench      # замер времени при M = 1, 2, 4, 8 → results.csv
+make bench      # замер времени при M = 1, 2, 4, 8 (числа потоков) → results.csv
 make cpu        # замер загрузки CPU → cpu_usage.csv
 make plots      # графики зависимости → time_execution.png, speedup.png, cpu_usage.png
 ```
