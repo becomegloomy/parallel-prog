@@ -33,8 +33,8 @@ pip install -r requirements.txt
 
 ```bash
 make                      # сборка seq (без параллелизации) и par-{1,2,4,8} (auto-parallelization)
-make test                 # прогон всех N и K и фиксация времени → sample_results.csv
-python3 plot_results.py   # графики зависимости → time_execution.png (время от `N`), speedup.png (ускорение `S(M) = T(1)/T(M)` от `N`)
+make test                 # прогон всех N и K и фиксация времени, N - размер массива, K - кол-во потоков → sample_results.csv
+python3 plot_results.py   # графики зависимости → time_execution.png, speedup.png
 ```
 
 - `time_execution.png` - время выполнения от `N` для `seq` и `par-{1,2,4,8}`;
